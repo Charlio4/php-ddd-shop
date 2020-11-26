@@ -13,8 +13,6 @@ TextMate2
 
 ###> shopapi ###
 /vendor/
-/bin/
-!/bin/console
 /var/*
 !/var/logs/
 /var/logs/*

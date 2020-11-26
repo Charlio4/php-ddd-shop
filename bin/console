@@ -1,0 +1,41 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use Api\UI\Console\Customer\Create\ConsumerCreateCustomerCommand;
+use Api\UI\Console\Customer\Create\PublishCreateCustomerCommand;
+use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
+use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Helper\HelperSet;
+
+$app = require __DIR__ . '/../config/bootstrap.php';
+
+$container     = $app->getContainer();
+$entityManager = $container->get('EntityManager');
+
+$sfApp = new Application();
+
+$helperSet = new HelperSet(
+    [
+        'db' => new ConnectionHelper($entityManager->getConnection()),
+        'em' => new EntityManagerHelper($entityManager),
+    ]
+);
+
+// Create user
+$sfApp->add(
+    new PublishCreateCustomerCommand(
+        $container['ReadyToCreateCustomer']
+    )
+);
+
+$sfApp->add(
+    new ConsumerCreateCustomerCommand(
+        $container['ReadyToConsumeCreateCustomer'],
+        $container['CommandBus']
+    )
+);
+
+$sfApp->run();
