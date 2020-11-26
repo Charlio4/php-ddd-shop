@@ -1,0 +1,73 @@
+{
+    "name": "csuarez/shopapi",
+    "description": "Shopapi",
+    "keywords": [
+        "microframework",
+        "rest",
+        "router",
+        "psr7",
+        "csuarez"
+    ],
+    "homepage": "https://csuarez.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Carlos Suárez",
+            "email": "csuarezfu@gmail.com",
+            "homepage": "http://csuarez.com/"
+        }
+    ],
+    "require": {
+        "php": ">=7.4.0",
+        "slim/slim": "3.12.*",
+        "beberlei/assert": "3.2.*",
+        "doctrine/collections": "1.6.*",
+        "doctrine/orm": "2.7.*",
+        "guzzlehttp/guzzle": "6.5.*",
+        "league/tactician": "1.0.*",
+        "monolog/monolog": "1.25.*",
+        "nette/database": "2.4",
+        "php-amqplib/php-amqplib": "2.11.*",
+        "ramsey/uuid": "3.9.*",
+        "ramsey/uuid-doctrine": "1.6.*",
+        "swagger-api/swagger-ui": "3.25.*",
+        "symfony/console": "4.4.*",
+        "symfony/dotenv": "5.0.*",
+        "symfony/process": "4.4.*",
+        "symfony/stopwatch": "5.0.*",
+        "zendframework/zend-stdlib": "3.2.*",
+        "zircote/swagger-php": "3.0.*",
+        "ext-json": "*",
+        "ext-redis": "*"
+    },
+    "require-dev": {
+        "captainhook/captainhook": "^5.4",
+        "codeception/codeception": "4.1.12",
+        "codeception/module-asserts": "1.3.*",
+        "codeception/module-phpbrowser": "1.0.*",
+        "codeception/module-rest": "1.2.*",
+        "codeception/module-sequence": "1.0.*",
+        "doctrine/doctrine-fixtures-bundle": "3.3.*",
+        "friendsofphp/php-cs-fixer": "2.16.*",
+        "mockery/mockery": "1.3.*",
+        "phpunit/php-code-coverage": "7.0.*",
+        "phpunit/phpunit": "8.5.*",
+        "symfony/var-dumper": "5.0.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Api\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/",
+            "Tests\\Unit\\": "tests/unit"
+        }
+    },
+    "config": {
+        "bin-dir": "bin",
+        "process-timeout": 0,
+        "sort-packages": true
+    }
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
+
+    <entity name="Api\Domain\Entity\Customer" table="customer">
+
+        <id name="uuid" type="uuid" column="uuid"/>
+        <field name="firstname" type="customerFirstname" column="firstname"/>
+        <field name="lastname" type="customerLastname" column="lastname"/>
+        <field name="createdAt" type="createdAt" column="created_at">
+            <gedmo:timestampable on="create"/>
+        </field>
+    </entity>
+
+</doctrine-mapping>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
+
+    <entity name="Api\Domain\Entity\Product" table="product">
+
+        <id name="uuid" type="uuid" column="uuid"/>
+        <id name="sellerUuid" type="uuid" column="seller_uuid"/>
+        <field name="name" type="productName" column="name"/>
+        <field name="price" type="productPrice" column="price"/>
+        <field name="createdAt" type="createdAt" column="created_at">
+            <gedmo:timestampable on="create"/>
+        </field>
+
+        <indexes>
+            <index columns="uuid"/>
+            <index columns="seller_uuid"/>
+            <index columns="name"/>
+        </indexes>
+
+        <many-to-one field="seller" target-entity="Api\Domain\Entity\Seller" inversed-by="product">
+            <join-column name="seller_uuid" nullable="false" referenced-column-name="uuid" on-delete="CASCADE" />
+        </many-to-one>
+    </entity>
+
+</doctrine-mapping>

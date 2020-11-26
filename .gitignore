@@ -1,0 +1,33 @@
+###> IDE (SublimeText, Eclipse, Zend Studio, Netbeans, PHPStorm, TextMate2, Visual Studio Code) ###
+Capfile
+.buildpath
+/.idea/
+nbproject
+.project
+.settings
+.sublime-project
+TextMate2
+.vscode
+**/.DS_Store
+###< IDE ###
+
+###> shopapi ###
+/vendor/
+/bin/
+!/bin/console
+/var/*
+!/var/logs/
+/var/logs/*
+!/var/logs/.gitkeep
+private.key
+public.key
+.env
+###< shopapi ###
+
+###> CS Fixer, Deptrac, Php Unit ###
+/.php_cs
+/.php_cs.cache
+/.deptrac.cache
+public/codecoverage/*
+.phpunit.result.cache
+###< CS Fixer, Deptrac, Php Unit ###

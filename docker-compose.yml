@@ -1,0 +1,75 @@
+version: '3'
+
+networks:
+    default:
+        external:
+            name: ${EXTERNAL_NET}
+
+services:
+    nginx:
+        image: ruben4test/mgunginx
+        container_name: shopapi
+        ports:
+            - ${HTTP_WEB_PORT}:80
+        restart: on-failure
+        volumes:
+            - ".:/web"
+        depends_on:
+            - "php"
+
+    php:
+        image: ruben4test/mguphpdev
+        container_name: shopapiphp
+        environment:
+            - XDEBUG_REMOTE_PORT=${XDEBUG_REMOTE_PORT}
+            - XDEBUG_REMOTE_HOST=${XDEBUG_REMOTE_HOST}
+            - XDEBUG_REMOTE_CONNECT_BACK=${XDEBUG_REMOTE_CONNECT_BACK}
+        restart: on-failure
+        extra_hosts:
+            - postgres:${POSTGRES_IP}
+            - redis:${REDIS_IP}
+        volumes:
+            - ".:/web"
+            - "./var/logs:/var/log/api"
+
+    composer:
+        image: composer:1.10.17
+        container_name: shopapicomposer
+        volumes:
+            - ".:/app"
+        command: install --ignore-platform-reqs
+
+
+    # external services
+    local_postgres:
+        container_name: local_postgres
+        image: postgres:11
+        environment:
+            POSTGRES_USER: ${POSTGRES_USER}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+        ports:
+            - ${POSTGRES_PORT}:5432
+
+    adminer:
+        container_name: adminer
+        image: adminer
+        ports:
+            - ${ADMINER_PORT}:8080
+
+    redis:
+        container_name: local_redis
+        image: redis:alpine
+        ports:
+            - ${REDIS_PORT}:6379
+
+    local_rabbit:
+        container_name: local_rabbit
+        image: rabbitmq:3-management
+        environment:
+            RABBITMQ_ERLANG_COOKIE: ${RABBIT_COOKIE}
+            RABBITMQ_DEFAULT_USER: ${RABBIT_USER}
+            RABBITMQ_DEFAULT_PASS: ${RABBIT_PASSWORD}
+            RABBITMQ_DEFAULT_VHOST: "/"
+        ports:
+            - ${WEB_RABBIT_PORT}:15672
+            - ${RABBIT_PORT}:5672

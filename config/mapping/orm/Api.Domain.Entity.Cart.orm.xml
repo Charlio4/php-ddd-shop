@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
+
+    <entity name="Api\Domain\Entity\Cart" table="cart">
+
+        <id name="uuid" type="uuid" column="uuid"/>
+        <id name="productUuid" type="uuid" column="product_uuid"/>
+        <id name="customerUuid" type="uuid" column="customer_uuid"/>
+        <field name="quantity" type="productQuantity" column="quantity"/>
+        <field name="status" type="cartStatus" column="cart_status"/>
+        <field name="amount" type="cartAmount" column="amount"/>
+        <field name="createdAt" type="createdAt" column="created_at">
+            <gedmo:timestampable on="create"/>
+        </field>
+
+    </entity>
+
+</doctrine-mapping>

@@ -1,0 +1,9 @@
+actor: FunctionalTester
+modules:
+    enabled:
+        - Asserts
+        - \Helper\Functional
+        - REST:
+              url: http://shopapi
+              depends: PhpBrowser
+              part: Json

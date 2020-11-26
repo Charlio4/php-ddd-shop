@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
+
+    <entity name="Api\Domain\Entity\Seller" table="seller">
+
+        <id name="uuid" type="uuid" column="uuid"/>
+        <field name="name" type="sellerName" column="name"/>
+        <field name="createdAt" type="createdAt" column="created_at">
+            <gedmo:timestampable on="create"/>
+        </field>
+
+        <indexes>
+            <index columns="uuid"/>
+            <index columns="name"/>
+        </indexes>
+    </entity>
+
+</doctrine-mapping>
